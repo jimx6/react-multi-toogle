@@ -9,20 +9,51 @@
 ```bash
 npm install --save react-multi-toogle
 ```
+or
+```bash
+yarn add react-multi-toogle
+```
 
 ## Usage
 
 ```tsx
-import React, { Component } from 'react'
+import React from 'react'
+import { ReactMultiToogle } from 'react-multi-toogle'
+import {
+  faSun,
+  faMoon,
+  faAd,
+  faAnchor
+} from '@fortawesome/free-solid-svg-icons'
 
-import MyComponent from 'react-multi-toogle'
-import 'react-multi-toogle/dist/index.css'
-
-class Example extends Component {
-  render() {
-    return <MyComponent />
-  }
+const App = () => {
+  return <ReactMultiToogle
+    name="testToogle"
+    onClick={(state) => {
+      console.log(state)
+    }}
+    options={[
+      {
+        icon: faSun,
+        value: "state1"
+      },
+      {
+        value: "state2",
+        icon: faMoon,
+      },
+      {
+        icon: faAd,
+        value: "state3"
+      },
+      {
+        icon: faAnchor,
+        value: "state4"
+      },
+    ]}/>
 }
+
+export default App
+
 ```
 
 ## License
