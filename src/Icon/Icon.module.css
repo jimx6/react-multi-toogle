@@ -1,0 +1,15 @@
+
+.icon {
+  align-items: center;
+  display: flex;
+  font-size: 13px;
+  justify-content: center;
+}
+
+.iconUnchecked {
+  color: #eee;
+}
+
+.iconChecked {
+  color: #5c5c5c;
+}
