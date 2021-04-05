@@ -4,15 +4,22 @@ import styles from './ReactMultiToogle.module.css'
 import { ReactMultiToogleIcon } from '../Icon/Icon'
 import { IconDefinition } from '@fortawesome/free-solid-svg-icons'
 
-interface MultiToogleOption {
+export interface MultiToogleOption {
   value: string
   title?: string
   icon: IconDefinition
 }
 
+export enum MultiToogleSize {
+  small = 'small',
+  large = 'large'
+}
+
 interface Props {
   name: string
+  size?: string
   options: MultiToogleOption[]
+  value?: string
   onClick?: (value: string) => void
   onFocus?: (event: React.FocusEvent<HTMLInputElement>) => void
   onBlur?: (event: React.FocusEvent<HTMLInputElement>) => void
@@ -24,12 +31,26 @@ interface Props {
 export const ReactMultiToogle = (props: Props) => {
   const [hasFocus, setHasFocus] = React.useState(false)
   const [checked, setChecked] = React.useState(0)
+
+  React.useEffect(() => {
+    let found = 0
+    options.filter((op, i) => {
+      if (op.value === props.value) {
+        found = i
+        return true
+      }
+      return false
+    })
+    setChecked(found)
+  }, [props.value])
+
   const {
     className,
     name,
     onFocus,
     onClick,
     onBlur,
+    size,
     disabled,
     options,
     ...inputProps
@@ -78,10 +99,13 @@ export const ReactMultiToogle = (props: Props) => {
     {
       [styles['react-toggle--checked']]: true,
       [styles['react-toggle--focus']]: hasFocus,
-      [styles['react-toggle--disabled']]: disabled
+      [styles['react-toggle--disabled']]: disabled,
+      [styles['react-toggle--large']]: size === MultiToogleSize.large
     },
     className
   )
+
+  const calc = size === MultiToogleSize.large ? '41px' : '31px'
 
   return (
     <div
@@ -106,7 +130,7 @@ export const ReactMultiToogle = (props: Props) => {
       </div>
       <div
         className={styles['react-toggle-thumb']}
-        style={{ left: 'calc( 26px * ' + checked + ')' }}
+        style={{ left: 'calc( ' + calc + ' * ' + checked + ' + 1px)' }}
       />
       {options.map((_option: MultiToogleOption, i) => (
         <input

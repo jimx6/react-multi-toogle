@@ -11,6 +11,8 @@ import 'react-multi-toogle/dist/index.css'
 const App = () => {
   return <div style={{margin: '20px'}}><ReactMultiToogle
     name="testToogle"
+    value="state4"
+    size="large"
     onClick={(state) => {
       console.log(state)
     }}

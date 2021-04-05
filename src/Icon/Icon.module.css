@@ -2,14 +2,14 @@
 .icon {
   align-items: center;
   display: flex;
-  font-size: 13px;
+  font-size: 12px;
   justify-content: center;
 }
 
 .iconUnchecked {
-  color: #eee;
+  color: #5c5c5c;
 }
 
 .iconChecked {
-  color: #5c5c5c;
+  color: #fff;
 }
